@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
@@ -35,10 +36,10 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
 
-        $users = User::all(); //Eloquent
+        // $users = User::all(); //Eloquent
 
         // $users = DB::table('users')->get(); Query Builder
-        return view('dashboard', compact('users'));
+        return view('admin.index');
     })->name('dashboard');
 });
 
@@ -62,4 +63,6 @@ Route::get('/brand/delete/{id}',[BrandController::class,'destroy']);
 //Multi Image Routes
 Route::get('/multi/image', [BrandController::class, 'Multipic'])->name('multi.image');
 Route::post('/multi/image/add', [BrandController::class, 'StoreImage'])->name('store.image');
+
+Route::get('/user/logout', [AuthController::class, 'Logout'])->name('user.logout');
 

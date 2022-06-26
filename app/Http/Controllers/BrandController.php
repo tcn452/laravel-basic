@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 
-public function __construct()
-{
-    $this->middleware('auth');
-}
+
 
 {
     /**
@@ -23,6 +20,10 @@ public function __construct()
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+{
+    $this->middleware('auth');
+}
     public function AllBrands()
     {
         $brands = Brand::latest()->paginate(10);
